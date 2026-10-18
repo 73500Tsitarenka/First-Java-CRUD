@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack Lite | Workout Tracker</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <a class="brand" href="/">
+                <span class="brand-icon">F</span>
+                <span>FitTrack<span class="brand-light"> Lite</span></span>
+            </a>
+
+            <div class="sidebar-label">WORKSPACE</div>
+            <a class="nav-item active" href="#workouts">
+                <span>▦</span> My workouts
+            </a>
+
+            <div class="sidebar-bottom">
+                <div class="status-dot"></div>
+                <div>
+                    <strong>Stay consistent</strong>
+                    <p>Every rep counts.</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <span class="eyebrow">YOUR PERSONAL WORKOUT SPACE</span>
+                <span class="online-status"><span></span> LOCAL WORKSPACE</span>
+            </header>
+
+            <section class="hero">
+                <div>
+                    <div class="eyebrow accent">TRAIN SMARTER</div>
+                    <h1>Your work.<br><span>Your progress.</span></h1>
+                    <p>Keep your training organized. One workout at a time.</p>
+                </div>
+                <div class="hero-mark" aria-hidden="true">FT<span>.</span></div>
+            </section>
+
+            <section class="stats">
+                <article class="stat-card">
+                    <span class="stat-label">TOTAL EXERCISES</span>
+                    <strong id="totalExercises">0</strong>
+                    <span class="stat-note">In your workout list</span>
+                </article>
+                <article class="stat-card">
+                    <span class="stat-label">TOTAL SETS</span>
+                    <strong id="totalSets">0</strong>
+                    <span class="stat-note">Across all exercises</span>
+                </article>
+                <article class="stat-card">
+                    <span class="stat-label">TOTAL REPS</span>
+                    <strong id="totalReps">0</strong>
+                    <span class="stat-note">Planned repetitions</span>
+                </article>
+            </section>
+
+            <section class="workout-section" id="workouts">
+                <div class="section-heading">
+                    <div>
+                        <div class="eyebrow">YOUR TRAINING PLAN</div>
+                        <h2>Workout exercises</h2>
+                        <p>Manage your exercises, weights and repetitions.</p>
+                    </div>
+                    <button class="primary-button" id="addButton">＋ Add exercise</button>
+                </div>
+
+                <div class="toolbar">
+                    <div class="search-box">
+                        <span>⌕</span>
+                        <input id="searchInput" type="search"
+                               placeholder="Search exercises..." aria-label="Search exercises">
+                    </div>
+                    <span class="result-count" id="resultCount">0 exercises</span>
+                </div>
+
+                <div id="errorMessage" class="error-message" role="alert" hidden></div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>EXERCISE</th>
+                                <th>WEIGHT</th>
+                                <th>SETS</th>
+                                <th>REPS</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="exerciseTable">
+                            <tr><td colspan="5" class="empty">Loading exercises...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <footer>FITTRACK LITE <span>·</span> BUILT FOR CONSISTENCY</footer>
+        </main>
+    </div>
+
+    <dialog id="exerciseDialog">
+        <form id="exerciseForm">
+            <div class="dialog-heading">
+                <div>
+                    <div class="eyebrow accent">WORKOUT DETAILS</div>
+                    <h2 id="dialogTitle">Add exercise</h2>
+                </div>
+                <button type="button" class="close-button" id="closeDialog"
+                        aria-label="Close dialog">×</button>
+            </div>
+
+            <label for="exerciseName">Exercise name</label>
+            <input id="exerciseName" name="name" type="text"
+                   maxlength="100" placeholder="e.g. Romanian Deadlift" required>
+
+            <div class="form-grid">
+                <div>
+                    <label for="weightKg">Weight (kg)</label>
+                    <input id="weightKg" name="weightKg" type="number"
+                           min="0" max="10000" step="0.1" value="0" required>
+                </div>
+                <div>
+                    <label for="sets">Sets</label>
+                    <input id="sets" name="sets" type="number"
+                           min="1" max="100" value="3" required>
+                </div>
+                <div>
+                    <label for="reps">Reps</label>
+                    <input id="reps" name="reps" type="number"
+                           min="1" max="1000" value="12" required>
+                </div>
+            </div>
+
+            <p id="formError" class="form-error" role="alert" hidden></p>
+
+            <div class="dialog-actions">
+                <button type="button" class="secondary-button" id="cancelButton">Cancel</button>
+                <button type="submit" class="primary-button" id="saveButton">Save exercise</button>
+            </div>
+        </form>
+    </dialog>
+</body>
+</html>
