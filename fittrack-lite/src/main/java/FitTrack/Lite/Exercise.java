@@ -62,4 +62,10 @@ public class Exercise {
     public void setReps(int reps) {
         this.reps = reps;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Exercise[id=%d, name='%s', weightKg=%.1f, sets=%d, reps=%d]",
+                id, name, weightKg, sets, reps);
+    }
 }
